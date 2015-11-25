@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <p>I am currently reading Lehmann &amp; Romano "Testing Statistical Hypotheses" (3rd ed.) and Lehmann &amp; Casella "Theory of Point Estimation" (2nd ed.), abbr. TSH and TPE. The following is a collection of <del>random facts</del> observations I made while reading TSH and TPE.</p>
+
+<p><img class="emoji" title=":construction_worker:" alt=":construction_worker:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png" height="20" width="20" align="absmiddle"> <em>This page will be regularly updated.</em> <img class="emoji" title=":construction_worker:" alt=":construction_worker:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f477.png" height="20" width="20" align="absmiddle"></p>
+
+  <h1 class="page-heading">Topics:</h1>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <h3>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

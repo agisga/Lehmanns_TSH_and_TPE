@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Permutation tests</title>
+    <meta name="description" content="A collection of random facts I observed while reading Lehmann's  "Testing Statistical Hypotheses" and "Theory of Point Estimation"
+">
+
+    <link rel="stylesheet" href="/Lehmanns_TSH_and_TPE/css/main.css">
+    <link rel="canonical" href="http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/permutation_tests/">
+ 
+    <!-- MathJax interation-->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}});
+      MathJax.Hub.Config({TeX: {Macros:{subscript:['_{#1}',1],superscript:['^{#1}',1]}}});
+    </script> 
+    <!-- Turn on equation numbering -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+    </script>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/Lehmanns_TSH_and_TPE/">Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Permutation tests</h1>
+  </header>
+
+  <article class="post-content">
+    <p>When a parametric probabilistic model cannot be assumed, one can still construct exact level-$\alpha$ hypotheses tests as permutation tests. Here, based on sections 5.8 and 5.9 of TSH, I discuss the concept by considering as an example a permutation test for the difference of two means. </p>
+
+<p>Assume that each of the random variables $X\subscript{1}, \dots, X\subscript{m}$ has mean $\eta$ and that each of $Y\subscript{1}, ..., Y\subscript{n}$ has mean $\xi$. Additionally assume that the distributions of all those variables differ only with respect to the mean, for example, $X\subscript{i} \sim \mathrm{i.i.d.}\, f(x\subscript{i})$ and $Y\subscript{i} \sim \mathrm{i.i.d.}\, f(y\subscript{i} - \Delta)$ with $\Delta = \eta - \xi$. The density function $f$ is not known apart from the fact that it is continuous a.e. We want to test the hypothesis $H : \Delta = 0$.</p>
+
+<p>Let $N:=n+m$, denote the random vector containing all $X$s and $Y$s as $Z := (X^T, Y^T)^T$, and let $S(z)$ be the set of all permutations of the entries of a realization $z$ of the random vector $Z$.
+Then a level-$\alpha$ test $\phi$ has to satisfy</p>
+
+<p>$$\int \phi(z) \prod\subscript{i=1}^N f(z\subscript{i}) dz = \alpha.$$</p>
+
+<p>Interestingly, it turns out that this equality holds if and only if</p>
+
+<p>$$\frac{1}{N!} \sum\subscript{w\in S(z)} \phi(w) = \alpha.$$</p>
+
+<p>A more general result that accounts for population stratification is given by theorem 5.8.1 in TSH.</p>
+
+<p>The power of $\phi$  against an alternative $h(z)$ is given by</p>
+
+<p>$$\int \phi(z) h(z) dz = \int \mathrm{E}\left(\phi(Z) \middle| T=t\right) dP^T(t).$$</p>
+
+<p>Let $T(Z)$ be the order statistic. It holds that $S(z) = S(T(z)) = S(t)$, and from the expression of the conditional expectation $\mathrm{E}\left(\phi(Z) \middle| T=t\right)$ (see Example 2.4.1 and Problem 2.6), it can be further derived that the most powerful test $\phi$ maximizes</p>
+
+<p>$$\sum\subscript{z\in S(t)} \phi(z) \frac{h(z)}{\sum\subscript{w\in S(z)} h(w)}$$</p>
+
+<p>subject to</p>
+
+<p>$$\frac{1}{N!} \sum\subscript{z\in S(t)} \phi(z) = \alpha.$$</p>
+
+<p>Now, the Neyman-Pearson fundamental lemma implies that the hypothesis should be rejected whenever $\frac{h(z)N!}{\sum\subscript{w\in S(z)} h(w)}$ is too large.
+This leads to a most powerful test $\phi$ given by</p>
+
+<p>$$\phi(z) = \begin{cases}
+1, \quad\mathrm{if}\, h(z) &gt; C(T(z)), \\\
+\gamma, \quad\mathrm{if}\, h(z) = C(T(z)), \\\
+0, \quad\mathrm{if}\, h(z) &lt; C(T(z)).
+\end{cases}$$</p>
+
+<p>Thus the test is carried out by... </p>
+
+<ol>
+<li>ordering the points in $S(z)$ in a decreasing order according to $h$,</li>
+<li>rejecting if $h(z)$ is one of the $k$ largest values and rejecting with probability $\gamma$ if $h(z)$ is $(k+1)$st largest, where $k$ and $\gamma$ are determined by</li>
+</ol>
+
+<p>$$k+\gamma = \alpha \cdot N!$$</p>
+
+<p>More general versions of this approach, which incorporate population stratification and randomization, are given in section 5.8-5.13 in TSH.</p>
+
+<p>The above test is not UMP because it depends on $h$. However, it can be shown that if under the null hypothesis each $Z\subscript{i}$ follows the same normal distribution $\mathcal{N}(\xi, \sigma^2)$, then the derived test is most powerful among all unbiased tests of level $\alpha$ against all normal alternatives under consideration (see Lemma 5.9.1 in TSH for an even more general result).
+Such an approach is appropriate when the data is assumed to be approximately normal but the assumption is not considered reliable. The permutation test is maximizing the power against all normal alternatives, while still being unbiased against all other alternatives.</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</li>
+          <li><a href="mailto:alexej.go@googlemail.com">alexej.go@googlemail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/agisga">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">agisga</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">A collection of random facts I observed while reading Lehmann's  "Testing Statistical Hypotheses" and "Theory of Point Estimation"
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

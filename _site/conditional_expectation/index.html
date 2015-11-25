@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Conditional expectation, conditional distribution, sufficiency, decision procedures</title>
+    <meta name="description" content="A collection of random facts I observed while reading Lehmann's  "Testing Statistical Hypotheses" and "Theory of Point Estimation"
+">
+
+    <link rel="stylesheet" href="/Lehmanns_TSH_and_TPE/css/main.css">
+    <link rel="canonical" href="http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/conditional_expectation/">
+ 
+    <!-- MathJax interation-->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}});
+      MathJax.Hub.Config({TeX: {Macros:{subscript:['_{#1}',1],superscript:['^{#1}',1]}}});
+    </script> 
+    <!-- Turn on equation numbering -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+    </script>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+    </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/Lehmanns_TSH_and_TPE/">Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Conditional expectation, conditional distribution, sufficiency, decision procedures</h1>
+  </header>
+
+  <article class="post-content">
+    <p>Consider a random variable $X$ with sample space $(\mathcal{X}, \mathcal{A})$ and probability distribution $P^X$, and a statistic $T(X)$ with range space $(\mathcal{T}, \mathcal{B})$.</p>
+
+<h3>Definition [$\mathrm{E}(f(X)|t)$]</h3>
+
+<p><em>Let $f(x)$ be a non-negative, $\mathcal{A}$-measurable and $P^X$-integrable function.
+A $\mathcal{B}$-measurable function $g(t)$ is the conditional expectation of $X$ for given $t$, i.e. $\mathrm{E}(f(X)|t) = \mathrm{E}(f(X)|T=t) = g(t)$, if for all sets $B\in\mathcal{B}$ it holds that</em></p>
+
+<p>$$\int\subscript{T^{-1}(B)} f(x) dP^X(x) = \int\subscript{B} g(t) dP^T(t).$$</p>
+
+<p>Some observations regarding this definition:</p>
+
+<ul>
+<li><p>In fact, if we define $f\subscript{0}(x) = g(T(x))$, then by Lemma 2.3.2 in TSH the above formula becomes</p>
+
+<p>$$\int\subscript{A} f(x) dP^X(x) = \int\subscript{A} f\subscript{0}(x) dP^X(x), \forall A \in \mathcal{A}\subscript{0},$$</p>
+
+<p>where $\mathcal{A}\subscript{0}$ is the $\sigma$-algebra induced by $T$.</p></li>
+<li><p>The existence and uniqueness $(\mathcal{A}\subscript{0}, P^X)$ of such a function $f\subscript{0}$ follows from Radon-Nikodym Theorem.</p></li>
+<li><p>If $f$ is not non-negative, then we can use the usual decomposition $f = f^+ - f^-$ and define</p>
+
+<p>$$\mathrm{E}(f(X)|t) = \mathrm{E}(f^+(X)|t) - \mathrm{E}(f^-(X)|t).$$</p></li>
+</ul>
+
+<h3>Definition [$P(A|t)$]</h3>
+
+<p><em>Let $I\subscript{A}(X)$ be a random variable that is equal to one if and only if $X\in A$. The conditional probability of $A$ given $T=t$ can be defined as</em></p>
+
+<p>$$P(A|t) = E(I\subscript{A}(X) | t).$$</p>
+
+<p>This definition seems natural, and in fact, if $T$ has Euclidean domain and range spaces or if $\mathrm{E}|f(X)| &lt; \infty$, then the above defines the <em>conditional probability distribution</em> $P^{X|t}$ (see Theorems 2.5.2 and 2.5.3 in TSH).</p>
+
+<h3>Definition [Sufficiency]</h3>
+
+<p><em>Let $\mathcal{P} = \{P\subscript{\theta} : \theta\in\Omega\}$ be a family of distributions over a sample space $(\mathcal{X}, \mathcal{A})$.</em>
+<em>$T$ is sufficient for $\mathcal{P}$ (or $\theta$) if $P\subscript{\theta}(A|t)$ is independent of $\theta$ for every $A\in\mathcal{A}$.</em></p>
+
+<p>In particular, the class of decision procedures depending on a sufficient statistic $T$ is <em>essentially complete</em>. To see this, assume that the sample space is Euclidean, then by Theorem 2.5.1 in TSH there exists the conditional probability distribution $P^{X|t}$. Let $\phi(x)$ be a decision procedure. Given only the value of the sufficient statistic $T(X)$ (but not $X$), define another decision procedure $\psi(t)$ as a random sample from the distribution $P^{X|t}$. Then $\phi(X)$ and $\psi(T)$ have identical distributions. Consequently, both decision procedures have the same risk,</p>
+
+<p>$$R(\theta, \psi) = \mathrm{E}(L(\theta, \psi(T))) = \mathrm{E}(L(\theta, \phi(X))) = R(\theta, \phi).$$</p>
+
+<p>Thus, for any decision procedure that is based on $X$, there is a decision procedure based on $T$ that is equally good or better.</p>
+
+<p>For a proof in the general (non-Euclidean) case see exercise 2.13 in TSH.</p>
+
+<h2>General conditional expectation</h2>
+
+<p>Let $X$ and $Y$ be two real-valued random variables, which can be written as mappings $X: \Omega \to \mathbb{R}$ and $Y: \Omega \to \mathbb{R}$ over a measurable space $(\Omega, \mathcal{A}, P)$. The above definition of $\mathrm{E}(X|T(X)=t)$ suggests a similar definition of $\mathrm{E}(X|Y=y)$. Namely, $\mathrm{E}(X|Y=y) = g(y)$ if for all Borel sets $A$ it holds that</p>
+
+<p>$$\int\subscript{Y^{-1}(A)} X(\omega) dP(\omega) = \int\subscript{A} g(y) dP^Y(y).$$</p>
+
+<p>In fact, a more general version of this definition is given in Feller&#39;s &quot;An Introduction to Probability Theory and its Applications. Volume II&quot; (10.6) as,</p>
+
+<p>$$\mathrm{E}(X\cdot I\subscript{A}(Y)) = \int\subscript{A} \mathrm{E}(X | y) \mu\{dy\},$$</p>
+
+<p>for any pair of random variables $X$ and $Y$.</p>
+
+<p>If $X$ and $Y$ are real-valued one-dimensional, then the pair $(X,Y)$ can be viewed as a random vector in the plane. Each set $\{Y \in A\}$ consists of parallels to the $x$-axis, and we can define a $\sigma$-algebra induced by $Y$ as the collection of all sets $\{Y \in A\}$, where $A$ are Borel sets. Then $\mathrm{E}(X|Y)$ is a random variable, such that $\mathrm{E}(X\cdot I\subscript{B}) = \mathrm{E}(\mathrm{E}(X|Y) \cdot I\subscript{B})$ for all $B=\{Y\in A\}$ with $A$ being a Borel set. This leads to the following general definition.</p>
+
+<h3>Definition [Conditional expectation]</h3>
+
+<p><em>Let $\mathcal{A}$ be the underlying $\sigma$-algebra of sets, and let $\mathcal{B}$ be a $\sigma$-algebra contained in $\mathcal{A}$. Let $X$ be a random variable.</em></p>
+
+<ol>
+<li><p><em>A random variable $U$ is called a conditional expectation of $X$ relative to $\mathcal{B}$ (or $U=\mathrm{E}(X|\mathcal{B})$), if it is $\mathcal{B}$-measurable and for all $B\in\mathcal{B}$ it holds that</em></p>
+
+<p>$$\mathrm{E}(X\cdot I\subscript{B}) = \mathrm{E}(U \cdot I\subscript{B}).$$</p></li>
+<li><p><em>If $\mathcal{B}$ is the $\sigma$-algebra generated by a random variable $Y$, then $\mathrm{E}(X|Y) = \mathrm{E}(X|\mathcal{B})$.</em></p></li>
+</ol>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Some impressions about the books  "Testing Statistical Hypotheses" and "Theory of Point Estimation"</li>
+          <li><a href="mailto:alexej.go@googlemail.com">alexej.go@googlemail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/agisga">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">agisga</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">A collection of random facts I observed while reading Lehmann's  "Testing Statistical Hypotheses" and "Theory of Point Estimation"
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
