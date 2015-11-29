@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Least squares estimators are nice! (UMVU, MRE, BLUE)
+title: Least squares estimators are nice! PART 1 (UMVU, MRE, BLUE)
 ---
 
 The well-known least squares estimator (LSE) for the coefficients of a linear model is the "best" possible estimator according to several different criteria. Three types of such optimality conditions under which the LSE is "best" are discussed below. In the process, we also briefly look at the "best" estimators of the variance in a linear model.

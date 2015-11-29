@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Some impressions about the books  &quot;Testing Statistical Hypotheses&quot; and &quot;Theory of Point Estimation&quot;</title>
+    <title>Some impressions from the books  &quot;Testing Statistical Hypotheses&quot; and &quot;Theory of Point Estimation&quot;</title>
     <description>A collection of random facts I observed while reading Lehmann&#39;s  &quot;Testing Statistical Hypotheses&quot; and &quot;Theory of Point Estimation&quot;
 </description>
     <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/</link>
     <atom:link href="http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 24 Nov 2015 23:25:35 -0600</pubDate>
-    <lastBuildDate>Tue, 24 Nov 2015 23:25:35 -0600</lastBuildDate>
+    <pubDate>Sat, 28 Nov 2015 22:22:32 -0600</pubDate>
+    <lastBuildDate>Sat, 28 Nov 2015 22:22:32 -0600</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -426,7 +426,7 @@ $\blacksquare$
       </item>
     
       <item>
-        <title>Least squares estimators are nice! (UMVU, MRE, BLUE)</title>
+        <title>Least squares estimators are nice! PART 1 (UMVU, MRE, BLUE)</title>
         <description>&lt;p&gt;The well-known least squares estimator (LSE) for the coefficients of a linear model is the &amp;quot;best&amp;quot; possible estimator according to several different criteria. Three types of such optimality conditions under which the LSE is &amp;quot;best&amp;quot; are discussed below. In the process, we also briefly look at the &amp;quot;best&amp;quot; estimators of the variance in a linear model.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#39;s fix the concepts first, and then explore how they apply to LSE.&lt;/p&gt;
@@ -551,6 +551,194 @@ $$&lt;/p&gt;
         <pubDate>Sun, 25 Oct 2015 00:00:00 -0500</pubDate>
         <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice/</link>
         <guid isPermaLink="true">http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Least squares estimators are nice! PART 2 (consistency, asymptotic normality and efficiency)</title>
+        <description>&lt;p&gt;Chapter 6 in TPE introduces measures of asymptotic optimality of estimators, such as &lt;a href=&quot;https://en.wikipedia.org/wiki/Consistent_estimator&quot;&gt;consistency&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Efficient_estimator&quot;&gt;efficiency&lt;/a&gt; as the sample size gets large. Here, I aim to apply these results in the setting of linear models.&lt;/p&gt;
+
+&lt;h2&gt;Overview of the results on asymptotics in TPE&lt;/h2&gt;
+
+&lt;p&gt;Theorem 6.3.7 establishes the existence of a consistent sequence of roots of the log-likelihood in a one-parameter family of distributions (i.e. a sequence of estimators $\hat{\theta}\subscript{n}$ such that $\hat{\theta}\subscript{n} \rightarrow \theta$ in probability, where $\theta$ denotes the true parameter to be estimated). The Theorem does not tell us how exactly to pick a consistent sequence, unless the log-likelihood has a unique root for all $n$, in which case the sequence of maximum likelihood estimators is consistent (see Corollary 6.3.8). &lt;/p&gt;
+
+&lt;p&gt;Theorem 6.3.10 extends the previous result by establishing that any consistent sequence of roots of the log-likelihood is asymptotically normal with asymptotic variance given by $\frac{1}{\mathcal{I}(\theta)}$, the inverse of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Fisher_information&quot;&gt;Fisher&amp;#39;s information&lt;/a&gt;. Such a sequence $\hat{\theta}\subscript{n}$ is called an &lt;em&gt;efficient likelihood estimator&lt;/em&gt;. In particular, $\hat{\theta}\subscript{n}$ is also &lt;em&gt;asymptotically efficient&lt;/em&gt;, meaning that it attains the &lt;a href=&quot;https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound&quot;&gt;Cramér–Rao lower bound&lt;/a&gt; asymptotically.&lt;/p&gt;
+
+&lt;p&gt;Finally, Theorem 6.5.1 extends the previous results to the multi-parameter case. When the true parameter $\theta$ is a vector, there exist solutions $\hat{\theta}\subscript{n}$ to the likelihood equation (under some additional regularity conditions), such that $\hat{\theta}\subscript{jn} \rightarrow \theta\subscript{j}$ in probability and $\sqrt{n}(\hat{\theta}\subscript{n} - \theta) \overset{\mathcal{L}}{\rightarrow} \mathcal{N}(0,\mathcal{I}(\theta)^{-1})$. In particular, $\hat{\theta}\subscript{jn}$ is asymptotically efficient for each $j$.&lt;/p&gt;
+
+&lt;p&gt;Additionally, TPE presents multiple results on how to find a consistent estimator when the log-likelihood has multiple roots. For the one-parameter case see Theorem 6.4.3, Corollary 6.4.4 and Examples 6.4.6, 6.4.7 and 6.4.10, as well as other results in Section 4 of Chapter 6 in TPE. These results are extended to the multi-parameter situation in Theorem 6.5.3 and Corollary 6.5.4.&lt;/p&gt;
+
+&lt;h2&gt;Application to a stochastic linear model&lt;/h2&gt;
+
+&lt;p&gt;The usual formulation of a linear model is $y\subscript{i} = x\subscript{i}^T \beta + \varepsilon\subscript{i}$, where $\varepsilon\subscript{i}$ are i.i.d. error terms, and the $x\subscript{i}$ are (deterministic) measurements of the predictor variables for the $i$th subject. The above results on asymptotics cannot be applied to this model, because the observations $y\subscript{i}$ are not identically distributed. However, if we consider $x\subscript{i}$ to be stochastic and i.i.d., then the tupels $(y\subscript{i}, x\subscript{i})$ are i.i.d. observations of a random vector $(y, x)$, and consequently the above theory is applicable.&lt;/p&gt;
+
+&lt;p&gt;Thus, we consider the following model formulation:&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{eqnarray}
+y\subscript{i} | x\subscript{i} &amp;amp;=&amp;amp; x\subscript{i}^T \beta + \varepsilon\subscript{i}, \quad y\subscript{i}, \varepsilon\subscript{i} \in \mathbb{R}, x\subscript{i}, \beta \in \mathbb{R}^p, \nonumber \\\
+x\subscript{i} &amp;amp;\sim&amp;amp; \mathrm{i.i.d.}\,F\subscript{\xi}, \quad \varepsilon\subscript{i} \sim \mathrm{i.i.d.}\,\mathcal{N}(0,\sigma^2), \quad x\subscript{i} \,\mathrm{and}\, \varepsilon\subscript{i} \,\mathrm{are\,independent}, \nonumber \\\
+\mathrm{E}(x\subscript{i}) &amp;amp;=&amp;amp; \int z \mathrm{d}F\subscript{\xi}(z) \,\mathrm{and}\, \mathrm{E}(x\subscript{i}x\subscript{i}^T) = \int zz^T \mathrm{d}F\subscript{\xi}(z) \,\mathrm{both\,exist}. \nonumber
+\end{eqnarray}
+$$&lt;/p&gt;
+
+&lt;p&gt;Writing $y = (y\subscript{1}, \dots, y\subscript{N})^T \in \mathbb{R}^{N}$, $X = (x\subscript{1}, \dots, x\subscript{N})^T \in \mathbb{R}^{N\times p}$ and $f(\cdot; \xi) = \frac{\partial}{\partial x} F\subscript{\xi}(x)$, it follows that the log-likelihood is given by&lt;/p&gt;
+
+&lt;p&gt;$$l(\beta, \sigma^2; \xi) = -\frac{N}{2}\log(2\pi) - \frac{N}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\|y - X\beta\|\subscript{2}^2 + \sum \log f(x\subscript{i}; \xi).$$&lt;/p&gt;
+
+&lt;p&gt;It is apparent that $\xi$ is asymptotically uncorrelated with $(\beta, \sigma^2)$. Thus, the estimation of $(\beta, \sigma^2)$ and $\xi$ can be performed separately without efficiency loss. &lt;/p&gt;
+
+&lt;h3&gt;Maximum likelihood estimators and information matrix&lt;/h3&gt;
+
+&lt;p&gt;Using basic rules of differentiation of matrices, vectors and scalar forms we arrive at&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{eqnarray}
+\frac{\partial l}{\partial \beta} &amp;amp;=&amp;amp; -\frac{1}{\sigma^2} (X^T X \beta - X^T y), \nonumber \\\
+\frac{\partial l}{\partial \sigma^2} &amp;amp;=&amp;amp; -\frac{N}{2\sigma^2} + \frac{\|y - X\beta\|\subscript{2}^2}{2(\sigma^2)^2}, \nonumber \\\
+\frac{\partial^2 l}{\partial \beta \partial \beta} &amp;amp;=&amp;amp; -\frac{1}{\sigma^2} X^T X, \nonumber \\\
+\frac{\partial^2 l}{\partial \beta \partial \sigma^2} &amp;amp;=&amp;amp; \frac{\partial^2 l}{\partial \sigma^2 \partial \beta} = \frac{1}{(\sigma^2)^2} (X^T X \beta - X^T y), \nonumber \\\
+\frac{\partial^2 l}{\partial \sigma^2 \partial \sigma^2} &amp;amp;=&amp;amp; \frac{N}{2(\sigma^2)^2} - \frac{\|y - X\beta\|\subscript{2}^2}{(\sigma^2)^3}. \nonumber
+\end{eqnarray}
+$$&lt;/p&gt;
+
+&lt;p&gt;Setting the first derivatives to zero, it follows that the maximum likelihood estimators are&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{LSE}
+\hat{\beta} = (X^T X)^{-1} X^T y,
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;which is also known as the least squares estimator of $\beta$, and&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{MSE}
+\hat{\sigma}^2 = \frac{\|y - X\beta\|\subscript{2}^2}{N}.
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;In order to obtain the information matrix we take expectations of the second derivatives:&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{eqnarray}
+\mathrm{E}\left(\frac{\partial^2 l}{\partial \beta \partial \beta}\right) &amp;amp;=&amp;amp; -\frac{1}{\sigma^2} \sum\subscript{i=1}^N \mathrm{E}(x\subscript{i} x\subscript{i}^T) = - \frac{N}{\sigma^2} \int zz^T \mathrm{d}F\subscript{\xi}(z), \nonumber \\\
+\mathrm{E}\left(\frac{\partial^2 l}{\partial \beta \partial \sigma^2}\right) &amp;amp;=&amp;amp; \frac{1}{(\sigma^2)^2} \left[ \mathrm{E}(X^T X \beta) - \mathrm{E}(\mathrm{E}(X^T y |X))\right] \nonumber \\\
+&amp;amp;=&amp;amp; \frac{1}{(\sigma^2)^2} \left[ \mathrm{E}(X^T X \beta) - \mathrm{E}(X^T X \beta) \right] = 0, \nonumber \\\
+\mathrm{E}\left(\frac{\partial^2 l}{\partial \sigma^2 \partial \sigma^2}\right) &amp;amp;=&amp;amp; \frac{N}{2(\sigma^2)^2} - \frac{\mathrm{E}(\mathrm{E}(\|y - X\beta\|\subscript{2}^2 | X))}{(\sigma^2)^3} \nonumber \\\
+&amp;amp;=&amp;amp; \frac{N}{2(\sigma^2)^2} - \frac{\mathrm{E}(\|X \beta + \varepsilon - X\beta\|\subscript{2}^2)}{(\sigma^2)^3} \nonumber \\\
+&amp;amp;=&amp;amp; \frac{N}{2(\sigma^2)^2} - \frac{N\sigma^2}{(\sigma^2)^3} = - \frac{N}{2(\sigma^2)^2}. \nonumber
+\end{eqnarray}
+$$&lt;/p&gt;
+
+&lt;p&gt;Consequently, the information of $(\beta, \sigma^2)$ is given by&lt;/p&gt;
+
+&lt;p&gt;$$
+\mathcal{I}\left( \begin{pmatrix} \beta \\ \sigma^2 \end{pmatrix} \right) = 
+\begin{pmatrix}
+\frac{N}{\sigma^2} \int zz^T \mathrm{d}F\subscript{\xi}(z) &amp;amp; 0 \\
+0 &amp;amp; \frac{N}{2(\sigma^2)^2}
+\end{pmatrix}.
+$$&lt;/p&gt;
+
+&lt;h3&gt;Consistency, asymptotic normality and efficiency&lt;/h3&gt;
+
+&lt;p&gt;In the model considered above, $(\beta, \sigma^2)$ parametrize distinct distributions with a common support, and the observations $(y\subscript{i}, x\subscript{i}, \varepsilon\subscript{i})$ are i.i.d. Therefore, we can use the standard asymptotic theory presented in Chapter 6 of TPE.&lt;/p&gt;
+
+&lt;h4&gt;Assumptions&lt;/h4&gt;
+
+&lt;p&gt;Still, in order to apply Theorem 5.1 of Section 6 in TPE, a number of additional conditions have to be verified. These are given as (A), (B), (C) and (D) in Section 5 of Chapter 6, and are checked in the following.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(A)&lt;/strong&gt; This is the assumption that the true parameter $(\beta, \sigma^2)$ is contained in a small open neighborhood, on which $l$ is three times differentiable. Unless the above model is degenerate (i.e. $\sigma^2 = 0$), the assumption should be valid.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(B)&lt;/strong&gt; Here we need to verify:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;$\mathrm{E}\left(\frac{\partial l}{\partial \beta}\right) = -\frac{1}{\sigma^2} \mathrm{E}(X^T X \beta - X^T y) = 0$.&lt;/li&gt;
+&lt;li&gt;$\mathrm{E}\left(\frac{\partial l}{\partial \sigma^2}\right) = -\frac{N}{2\sigma^2} + \frac{\mathrm{E}\|y - X\beta\|\subscript{2}^2}{2(\sigma^2)^2} = 0$.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$\forall j,k \in \{1,\dots,p+1\} : \mathrm{E}\left(-\frac{\partial^2 l}{\partial \theta\subscript{j} \partial \theta\subscript{k}} \right)
+= \mathrm{E}\left(\frac{\partial l}{\partial \theta\subscript{j}} \cdot \frac{\partial l}{\partial \theta\subscript{k}} \right)$, where $\theta := (\beta, \sigma^T)^T$.
+  This easily follows by observing that &lt;/p&gt;
+
+&lt;p&gt;$$\frac{\partial^2 l}{\partial \theta\subscript{j} \partial \theta\subscript{k}} = \frac{\partial^2}{\partial \theta\subscript{j} \partial \theta\subscript{k}} \log(g) = \frac{\frac{\partial^2 g}{\partial \theta\subscript{j} \partial \theta\subscript{k}}}{g} - \frac{\frac{\partial g}{\partial \theta\subscript{j}} \frac{\partial g}{\partial \theta\subscript{k}}}{g^2} = \frac{\frac{\partial^2 g}{\partial \theta\subscript{j} \partial \theta\subscript{k}}}{g} - \frac{\partial l}{\partial \theta\subscript{j}} \frac{\partial l}{\partial \theta\subscript{k}},$$&lt;/p&gt;
+
+&lt;p&gt;where $g$ is the joint density of $(y\subscript{i}, x\subscript{i})$, and then taking the expectation of both sides.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;(C)&lt;/strong&gt; The information matrix $\mathcal{I}\left( \begin{pmatrix} \beta \\ \sigma^2 \end{pmatrix} \right)$ has to be positive definite. It is a covariance matrix and therefore at least positive semi-definite. In practice, positive definiteness can be safely assumed, because a covariance matrix $\mathrm{Cov}(z)$ is only positive semi-definite rather than positive definite if and only if $a^T z$ constant with probability 1 for some vector $a$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(D)&lt;/strong&gt; This condition essentially requires that the third derivatives of the log-likelihood should be bounded in a small neighborhood of the true parameter $(\beta, \sigma^2)$. By looking at the previously computed second derivatives, it is clear that the condition is satisfied.&lt;/p&gt;
+
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+
+&lt;p&gt;Thus, all assumptions of Theorem 6.5.1 in TPE are satisfied, and it follows the conclusion:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;The maximum likelihood estimators ($\ref{LSE}$) and ($\ref{MSE}$) are consistent for estimating $\beta$ and $\sigma^2$. That is, the well-known least squares estimator $\hat{\beta}$ converges in probability to the true parameter $\beta$, and $\hat{\sigma}^2$ converges in probability to the true $\sigma^2$.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The derived maximum likelihood estimators ($\ref{LSE}$) and ($\ref{MSE}$) are asymptotically normal:&lt;/p&gt;
+
+&lt;p&gt;$$\mathcal{I}\left( \begin{pmatrix} \beta \\ \sigma^2 \end{pmatrix} \right)^{1/2} \left[ \begin{pmatrix} \hat{\beta} \\ \hat{\sigma}^2 \end{pmatrix} - \begin{pmatrix} \beta \\ \sigma^2 \end{pmatrix} \right]
+\overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0, I),$$ &lt;/p&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;p&gt;$$
+\mathcal{I}\left( \begin{pmatrix} \beta \\ \sigma^2 \end{pmatrix} \right) = 
+\begin{pmatrix}
+\frac{N}{\sigma^2} \int zz^T \mathrm{d}F\subscript{\xi}(z) &amp;amp; 0 \\
+0 &amp;amp; \frac{N}{2(\sigma^2)^2}
+\end{pmatrix}.
+$$&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The estimator $\hat{\sigma}^2$ as well as all estimators $\hat{\beta}\subscript{i}$ (for each $i\in\{1,\dots,p\}$) are asymptotically efficient in the sense that each of those achieves its respective &lt;a href=&quot;https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound&quot;&gt;Cramér–Rao lower bound&lt;/a&gt; asymptotically.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4&gt;Alternative proof&lt;/h4&gt;
+
+&lt;p&gt;In Section 3.6.2 of Demidenko (2013) &amp;quot;Mixed Models: Theory and Applications with R&amp;quot; (2nd ed.), consistency and asymptotic normality of the least squares estimator in a linear model with stochastic predictors $x\subscript{i}$ is established based on the Law of Large Numbers and a multivariate version of the Central Limit Theorem.&lt;/p&gt;
+
+&lt;h2&gt;Asymptotics of a deterministic linear model&lt;/h2&gt;
+
+&lt;p&gt;Even though, for reasons delineated above, the theory of Chapter 6 in TPE cannot be applied when the predictors $x\subscript{i}$ are considered deterministic rather than random, asymptotic properties of the estimators can still be established.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://projecteuclid.org/euclid.aos/1176346597&quot;&gt;Fahrmeir and Kaufmann (1985) &amp;quot;Consistency and Asymptotic Normality of the Maximum Likelihood Estimator in Generalized Linear Models&amp;quot;&lt;/a&gt; under some regularity conditions give a proof of the weak and strong consistency as well as asymptotic normality of estimators in generalized linear models, of which the linear model is a simple special case.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC392707/pdf/pnas00019-0030.pdf&quot;&gt;Robbins and Wei (1978) &amp;quot;Strong consistency of least squares estimates in multiple regression&amp;quot;&lt;/a&gt; prove that the least squares estimator $\hat{\beta} = (X^T X)^{-1} X^T y$ is consistent if $(X^T X)^{-1} \rightarrow 0$ as $N\rightarrow \infty$, without any distributional assumptions on $y$ apart from independence. &lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Section 13.1.1 in Demidenko (2013) &amp;quot;Mixed Models: Theory and Applications with R&amp;quot; (2nd ed.) presents the following proof of asymptotic normality of the least squares estimator.&lt;/p&gt;
+
+&lt;p&gt;Consider the model $y\subscript{i} = x\subscript{i}^T \beta + \varepsilon\subscript{i}$ for $i = 1,\ldots,N$, where $y\subscript{i}, \varepsilon\subscript{i} \in \mathbb{R}$ and $x\subscript{i}, \beta \in \mathbb{R}^p$.
+Assume that the $\varepsilon\subscript{i}$ are i.i.d. with $\mathrm{E}(\varepsilon\subscript{i}) = 0$ and $\mathrm{Var}(\varepsilon\subscript{i}) = \sigma^2$.
+Assume that $\lim N^{-1} \sum\subscript{i=1}^N x\subscript{i}x\subscript{i}^T = V$, and that there is a constant $c$ such that $\|x\subscript{i}\| \leq c$.
+Then by a multivariate version of the Central Limit Theorem it holds that&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{CLT}
+\frac{1}{\sqrt{N}} \sum\subscript{i=1}^N x\subscript{i}\varepsilon\subscript{i} \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0, \sigma^2 V).
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;The least squares estmator can be expressed as &lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{OLS}
+\hat{\beta} = \left(\sum\subscript{i=1}^N x\subscript{i} x\subscript{i}^T \right)^{-1} \left(\sum\subscript{i=1}^N x\subscript{i} y\subscript{i} \right).
+\end{equation}
+$$ &lt;/p&gt;
+
+&lt;p&gt;Together, $(\ref{CLT})$ and $(\ref{OLS})$ imply that&lt;/p&gt;
+
+&lt;p&gt;$$\hat{\beta} \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}\left(\beta, \sigma^2 \left(\sum\subscript{i=1}^N x\subscript{i} x\subscript{i}^T \right)^{-1} \right).$$&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is also worth pointing out that under a normality assumption on the error terms, (small sample) distributions of the estimators $\hat{\beta}$ and $\hat{\sigma}^2$ can be easily derived (in particular, $\hat{\beta} \sim \mathcal{N}(\beta, \sigma^2 (X^T X)^{-1})$ and $\frac{\|y - X\hat{\beta}\|\subscript{2}^2}{\sigma^2} \sim \chi\subscript{N-p}^2$). The normality assumption in fact seems currently to be the standard in the statistical modeling literature. Moreover, under the normality assumption the estimators fulfill further optimality assumptions, such as &lt;a href=&quot;/Lehmanns_TSH_and_TPE/LSE_so_nice/&quot;&gt;uniform minimum variance unbiasedness and minimum risk equivariance&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 24 Oct 2015 00:00:00 -0500</pubDate>
+        <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice_2/</link>
+        <guid isPermaLink="true">http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice_2/</guid>
         
         
       </item>
