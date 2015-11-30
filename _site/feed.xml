@@ -6,8 +6,8 @@
 </description>
     <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/</link>
     <atom:link href="http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Nov 2015 22:29:13 -0600</pubDate>
-    <lastBuildDate>Sat, 28 Nov 2015 22:29:13 -0600</lastBuildDate>
+    <pubDate>Mon, 30 Nov 2015 17:27:05 -0600</pubDate>
+    <lastBuildDate>Mon, 30 Nov 2015 17:27:05 -0600</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -739,6 +739,168 @@ $$ &lt;/p&gt;
         <pubDate>Sat, 24 Oct 2015 00:00:00 -0500</pubDate>
         <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice_2/</link>
         <guid isPermaLink="true">http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/LSE_so_nice_2/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Small sample tests of linear hypotheses in linear models</title>
+        <description>&lt;p&gt;Consider a linear model $y = X\beta + \varepsilon$, where $y\in\mathbb{R}^n$, $X\in\mathbb{R}^{n\times p}$ with $p &amp;lt; n$, $\mathrm{rank}(X) = p$, $\beta\in\mathbb{R}^p$, and $\varepsilon\subscript{i} \sim \mathrm{i.i.d.}\, \mathcal{N}(0,\sigma^2)$ for all $i\in\{1,\dots,n\}$.&lt;/p&gt;
+
+&lt;p&gt;For convenience, denote $\xi := \mathrm{E}(y) = X\beta$. It holds that $\xi\in\Pi$, where $\Pi$ denotes a $p$-dimensional subspace of $\mathbb{R}^n$ (spanned by the columns of $X$).&lt;/p&gt;
+
+&lt;p&gt;Assume that we want to test a hypothesis of the form $\mathrm{H} : C^T \beta = 0$, where $C \in \mathbb{R}^{p\times r}$ with $r &amp;lt; p$ and $\mathrm{rank}(C) = r$. It holds that $C^T = B^T X$ where $B^T = C^T(X^T X)^{-1} X^T \in \mathbb{R}^{r\times n}$. Thus, we can rewrite the hypothesis as $\mathrm{H} : B^T \xi = 0$. That is, under the null hypothesis $\xi$ lies in a $(p-r)$-dimensional subspace of $\Pi$. If we denote this $(p-r)$-dimensional subspace by $\omega$, then the testing problem becomes&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{test}
+\mathrm{H} : \xi \in \omega \quad\mathrm{vs.}\quad \mathrm{K} : \xi\in\Pi.
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;In the following we will construct the uniformly most powerful test among all invariant tests for testing problems of this general form.&lt;/p&gt;
+
+&lt;h2&gt;Orthogonal coordinate transformation&lt;/h2&gt;
+
+&lt;p&gt;Let $Q\in\mathbb{R}^{n\times n}$ be an orthogonal matrix such that its first $p$ rows $q\subscript{1}, \dots, q\subscript{p}$ span $\Pi$, and such that $\mathrm{span}(q\subscript{r+1}, \dots, q\subscript{p}) = \omega$.&lt;/p&gt;
+
+&lt;p&gt;Let $z := Qy$, and denote $\eta := \mathrm{E}(z) = Q\xi$. It follows that &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$z\subscript{p+1} = \dots = z\subscript{n} = 0$ if and only if $y\in\Pi$,&lt;/li&gt;
+&lt;li&gt;$z\subscript{1} = \dots = z\subscript{r} = 0$ and $z\subscript{p+1} = \dots = z\subscript{n} = 0$ if and only if $y\in\omega$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then the hypothesis H can be given can be given in a simpler form:&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{orthotest}
+\mathrm{H} : \eta\subscript{1} = \dots = \eta\subscript{r} = 0.
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;h2&gt;Reduction of the problem via the principle of invariance&lt;/h2&gt;
+
+&lt;p&gt;In general, we call a testing problem $\mathrm{H} : \xi \in \Omega\subscript{H}$ vs. $\mathrm{K} : \xi\in\Omega\subscript{K}$ &lt;em&gt;invariant&lt;/em&gt; under a transformation $g$ of the sample space, if the induced transformation $\bar{g}$ on the parameter space preserves both $\Omega\subscript{H}$ and $\Omega\subscript{K}$, that is, if $\bar{g}\Omega = \Omega$, $\bar{g}\Omega\subscript{H} = \Omega\subscript{H}$ and $\bar{g}\Omega\subscript{K} = \Omega\subscript{K}$. See Section 6.1 in TSH for a more detailed definition. In the following, we denote by $G$ the group of all such transformations.&lt;/p&gt;
+
+&lt;p&gt;In the present case, the testing problem ($\ref{orthotest}$) remains invariant under the groups of transformations:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All transformations of the form $z\subscript{i}^\prime = z\subscript{i} + c\subscript{i}$ with any $c\subscript{i}\in\mathbb{R}^{p-r}$ for $i = \{r+1, \ldots, p\}$.&lt;/li&gt;
+&lt;li&gt;All orthogonal transformations of $z\subscript{1}, \ldots, z\subscript{r}$.&lt;/li&gt;
+&lt;li&gt;All scale changes $z^\prime = cz$ with any $c\in\mathbb{R}$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A function which is constant on each &lt;a href=&quot;https://en.wikipedia.org/wiki/Group_action#Orbits_and_stabilizers&quot;&gt;orbit&lt;/a&gt; of $G$, but takes on a different value for each orbit is called &lt;em&gt;maximal invariant&lt;/em&gt;. See Section 6.2 in TSH for a more detailed definition.&lt;/p&gt;
+
+&lt;p&gt;In the present case, it is easy to derive (see Section 7.1 in TSH for a step-by-step derivation) that a maximal invariant under the above transformations is given by&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{orthoteststat}
+W = \frac{\sum\subscript{i=1}^r z\subscript{i}^2 / r}{\sum\subscript{i=p+1}^n z\subscript{i}^2 / (n-p)},
+\end{equation}
+$$ &lt;/p&gt;
+
+&lt;p&gt;and a maximal invariant in the parameter space is given by&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{psi}
+\psi^2 = \frac{\sum\subscript{i=1}^r \eta\subscript{i}^2}{\sigma^2}.
+\end{equation}
+$$ &lt;/p&gt;
+
+&lt;p&gt;Thus, the principle of invariance reduces the problem ($\ref{test}$) to&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{simplifiedtest}
+\mathrm{H} : \psi^2 = 0 \quad\mathrm{vs.}\quad \mathrm{K} : \psi^2 &amp;gt; 0.
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;h2&gt;Uniformly most powerful invariant test&lt;/h2&gt;
+
+&lt;p&gt;Since $z \sim \mathcal{N}(\eta, \sigma^2 I)$, the expression in ($\ref{orthoteststat}$) makes it clear that $W \sim F\subscript{n-p}^r$ under the null hypothesis.&lt;/p&gt;
+
+&lt;p&gt;Now, Theorem 6.3.2 in TSH implies that the distribution of $W$ only depends on $\psi^2$.
+Additionally, it can be shown (see Problems 7.2 and 7.3 in TSH) that the likelihood ratio $\frac{p\subscript{\psi\subscript{1}}(w)}{p\subscript{0}(w)}$ is increasing in $w$ for any $\psi\subscript{1}$. Therefore, by the variant of the Neyman-Pearson fundamental lemma given in Theorem 3.4.1 in TSH, it follows that the uniformly most powerful invariant test of ($\ref{simplifiedtest}$) rejects H if and only if $W &amp;gt; C$, where $C$ is determined by&lt;/p&gt;
+
+&lt;p&gt;$$\int\subscript{C}^\infty F\subscript{n-p}^r(w) \mathrm{d}w = \alpha.$$&lt;/p&gt;
+
+&lt;p&gt;Moreover, it is worth pointing out that in the case that $r=1$, the test reduces to a two-sided $t$-test&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{orthottest}
+t = \frac{|z\subscript{1}|}{\sqrt{\sum\subscript{i=p+1}^n z\subscript{i}^2 / (n-p)}} &amp;gt; C\subscript{0}.
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;This $t$-test is not only UMP invariant but also UMP unbiased (see Problem 5.5 in TSH).&lt;/p&gt;
+
+&lt;h3&gt;Test statistic in terms of the original variables&lt;/h3&gt;
+
+&lt;p&gt;Of course, in practice it is rather inconvenient having to find the orthogonal transform $z = Qy$. Therefore, we re-express the test statistic in terms of the original variables $y$.&lt;/p&gt;
+
+&lt;p&gt;Let $P = X(X^T X)^{-1}X^T$ and $\hat{\xi} = Py$. That is, $P$ is the orthogonal projection onto $\Pi$, and $\hat{\xi}$ is the least squares estimator of $\mathrm{E}(y) = \xi$.&lt;/p&gt;
+
+&lt;p&gt;Then $y - \hat{\xi}$ is orthogonal to $\Pi$ and $\hat{\xi}$ is orthogonal to $\Pi^c$. Therefore and by the orthogonality of $Q$ we have that&lt;/p&gt;
+
+&lt;p&gt;$$\sum\subscript{i=p+1}^n z\subscript{i}^2 = \|Q(y - \hat{\xi})\|\subscript{2}^2 = \|y - \hat{\xi}\|\subscript{2}^2.$$&lt;/p&gt;
+
+&lt;p&gt;Similarly we conclude that&lt;/p&gt;
+
+&lt;p&gt;$$\sum\subscript{i=1}^r z\subscript{i}^2 + \sum\subscript{i=p+1}^n z\subscript{i}^2 = \|y - \hat{\hat{\xi}}\|\subscript{2}^2,$$&lt;/p&gt;
+
+&lt;p&gt;where $\hat{\hat{\xi}}$ is the projection of $y$ onto $\omega$.&lt;/p&gt;
+
+&lt;p&gt;Thus, we can write the test statistic ($\ref{orthoteststat}$) as&lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{equation}
+\label{teststat}
+W = \frac{\left[\|y - \hat{\hat{\xi}}\|\subscript{2}^2 - \|y - \hat{\xi}\|\subscript{2}^2 \right] / r}{\|y - \hat{\xi}\|\subscript{2}^2 / (n-p)} = \frac{\|\hat{\xi} - \hat{\hat{\xi}}\|\subscript{2}^2 / r}{\|y - \hat{\xi}\|\subscript{2}^2 / (n-p)}.
+\end{equation}
+$$ &lt;/p&gt;
+
+&lt;h3&gt;Example: Derivation of the well-known t-test&lt;/h3&gt;
+
+&lt;p&gt;Assume for some $c\in\mathbb{R}^p$ (i.e. $r=1$) we want to test $\mathrm{H} : c^T \beta = 0$. As discussed in the very beginning this test is equivalent to testing $\mathrm{H} : b^T \xi = 0$ where $b^T = c^T(X^T X)^{-1}X^T$. It follows that &lt;/p&gt;
+
+&lt;p&gt;$$
+\begin{eqnarray}
+\hat{\xi} &amp;amp;=&amp;amp; X(X^T X)^{-1} X^T y, \nonumber \\\
+\hat{\hat{\xi}} &amp;amp;=&amp;amp; \hat{\xi} - \frac{b^T y}{\|b\|\subscript{2}^2} b, \nonumber \\\
+&amp;amp;=&amp;amp; \hat{\xi} - \frac{c^T \hat{\beta}}{\|b\|\subscript{2}^2} b, \nonumber 
+\end{eqnarray}
+$$&lt;/p&gt;
+
+&lt;p&gt;where $\hat{\beta} = (X^T X)^{-1} X^T y$ is the usual least squares solution. Then it holds that&lt;/p&gt;
+
+&lt;p&gt;$$
+\|\hat{\xi} - \hat{\hat{\xi}}\|\subscript{2}^2 = \left\|\frac{c^T \hat{\beta}}{\|b\|\subscript{2}^2} b \right\|\subscript{2}^2 = \frac{(c^T \hat{\beta})^2}{\|b\|\subscript{2}^2},
+$$&lt;/p&gt;
+
+&lt;p&gt;and consequently ($\ref{teststat}$) becomes&lt;/p&gt;
+
+&lt;p&gt;$$W = \frac{(c^T \hat{\beta})^2}{s^2 c^T (X^T X)^{-1} c},$$&lt;/p&gt;
+
+&lt;p&gt;where $s^2 = \|y - \hat{\xi}\|\subscript{2}^2 / (n-p)$. As shown above, $W$ has the $F$ distribution with 1 and $(n-p)$ degrees of freedom. Thus, the statistic&lt;/p&gt;
+
+&lt;p&gt;$$t = \frac{c^T \hat{\beta}}{s \sqrt{c^T (X^T X)^{-1} c}}$$&lt;/p&gt;
+
+&lt;p&gt;has the $t$ distribution with $(n-p)$ degrees of freedom.&lt;/p&gt;
+
+&lt;p&gt;In particular, the hypothesis $\mathrm{H} : \beta\subscript{i} = 0$ is rejected if $|t| &amp;gt; t\subscript{\alpha/2, n-p}$, where the test statistic is given by &lt;/p&gt;
+
+&lt;p&gt;$$t = \frac{\hat{\beta}\subscript{i}}{s \sqrt{\left[(X^T X)^{-1}\right]\subscript{i,i}}}.$$&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Oct 2015 00:00:00 -0500</pubDate>
+        <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/small_sample_tests_for_LM/</link>
+        <guid isPermaLink="true">http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/small_sample_tests_for_LM/</guid>
         
         
       </item>
