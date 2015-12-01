@@ -43,4 +43,4 @@ Thus, by Slutsky's theorem it follows that the test statistic $t$ of ($\ref{ttes
 
 #### Remark 
 
-Theorem 11.3.1 in TSH establishes the robustness of validity for the more general testing problem $\mathrm{H} : C\beta = 0$ where $C$ is a $q\by p$ matrix (I have derived such a test in [a different writeup](/Lehmanns_TSH_and_TPE/small_sample_tests_for_LM/)).
+Theorem 11.3.1 in TSH establishes the robustness of validity for the more general testing problem $\mathrm{H} : C\beta = 0$ where $C$ is a $q\times p$ matrix (I have derived such a test in [a different writeup](/Lehmanns_TSH_and_TPE/small_sample_tests_for_LM/)).
