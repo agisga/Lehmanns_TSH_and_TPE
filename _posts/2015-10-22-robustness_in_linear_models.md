@@ -40,3 +40,7 @@ Notice that the condition $\max d\subscript{i}^2 \to 0$ is satisfied if and only
 Now, by orthogonality of the columns of $X$ and since $c$ has length 1, the denominator of the test statistic ($\ref{ttest}$) reduces to $\sqrt{\frac{\\|y - X\hat{\beta}\\|\subscript{2}^2}{n-p}}$. This term tends in probability to $\sigma$, which is essentially a consequence of the Weak Law of Large Numbers (see p. 454 in TSH for a step-by-step derivation).
 
 Thus, by Slutsky's theorem it follows that the test statistic $t$ of ($\ref{ttest}$) converges in distribution to $\mathcal{N}(0,1)$. Because the critical value $t\subscript{\alpha/2, n-p}$ converges to the $(1-\alpha/2)$ quantile of the standard normal distribution as well, we conclude that the $t$-test in question is asymptotically robust against non-normality (provided $\max\subscript{i} \\|x\subscript{i}\\|\subscript{2}^2\to 0$).
+
+#### Remark 
+
+Theorem 11.3.1 in TSH establishes the robustness of validity for the more general testing problem $\mathrm{H} : C\beta = 0$ where $C$ is a $q\by p$ matrix (I have derived such a test in [a different writeup](/Lehmanns_TSH_and_TPE/small_sample_tests_for_LM/)).
