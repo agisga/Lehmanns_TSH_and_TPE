@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Small sample tests of linear hypotheses in linear models 
+title: UMP invariant tests for linear models 
 ---
 
 Consider a linear model $y = X\beta + \varepsilon$, where $y\in\mathbb{R}^n$, $X\in\mathbb{R}^{n\times p}$ with $p < n$, $\mathrm{rank}(X) = p$, $\beta\in\mathbb{R}^p$, and $\varepsilon\subscript{i} \sim \mathrm{i.i.d.}\, \mathcal{N}(0,\sigma^2)$ for all $i\in\\{1,\dots,n\\}$.
@@ -127,8 +127,7 @@ Assume for some $c\in\mathbb{R}^p$ (i.e. $r=1$) we want to test $\mathrm{H} : c^
 $$
 \begin{eqnarray}
 \hat{\xi} &=& X(X^T X)^{-1} X^T y, \nonumber \\\\\\
-\hat{\hat{\xi}} &=& \hat{\xi} - \frac{b^T y}{\\|b\\|\subscript{2}^2} b, \nonumber \\\\\\
-&=& \hat{\xi} - \frac{c^T \hat{\beta}}{\\|b\\|\subscript{2}^2} b, \nonumber 
+\hat{\hat{\xi}} &=& \hat{\xi} - \frac{b^T y}{\\|b\\|\subscript{2}^2} b = \hat{\xi} - \frac{c^T \hat{\beta}}{\\|b\\|\subscript{2}^2} b, \nonumber 
 \end{eqnarray}
 $$
 

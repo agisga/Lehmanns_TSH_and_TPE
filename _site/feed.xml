@@ -6,8 +6,8 @@
 </description>
     <link>http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/</link>
     <atom:link href="http://www.alexejgossmann.com//Lehmanns_TSH_and_TPE/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 30 Nov 2015 17:27:05 -0600</pubDate>
-    <lastBuildDate>Mon, 30 Nov 2015 17:27:05 -0600</lastBuildDate>
+    <pubDate>Mon, 30 Nov 2015 20:17:52 -0600</pubDate>
+    <lastBuildDate>Mon, 30 Nov 2015 20:17:52 -0600</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -744,7 +744,7 @@ $$ &lt;/p&gt;
       </item>
     
       <item>
-        <title>Small sample tests of linear hypotheses in linear models</title>
+        <title>UMP invariant tests for linear models</title>
         <description>&lt;p&gt;Consider a linear model $y = X\beta + \varepsilon$, where $y\in\mathbb{R}^n$, $X\in\mathbb{R}^{n\times p}$ with $p &amp;lt; n$, $\mathrm{rank}(X) = p$, $\beta\in\mathbb{R}^p$, and $\varepsilon\subscript{i} \sim \mathrm{i.i.d.}\, \mathcal{N}(0,\sigma^2)$ for all $i\in\{1,\dots,n\}$.&lt;/p&gt;
 
 &lt;p&gt;For convenience, denote $\xi := \mathrm{E}(y) = X\beta$. It holds that $\xi\in\Pi$, where $\Pi$ denotes a $p$-dimensional subspace of $\mathbb{R}^n$ (spanned by the columns of $X$).&lt;/p&gt;
@@ -873,8 +873,7 @@ $$ &lt;/p&gt;
 &lt;p&gt;$$
 \begin{eqnarray}
 \hat{\xi} &amp;amp;=&amp;amp; X(X^T X)^{-1} X^T y, \nonumber \\\
-\hat{\hat{\xi}} &amp;amp;=&amp;amp; \hat{\xi} - \frac{b^T y}{\|b\|\subscript{2}^2} b, \nonumber \\\
-&amp;amp;=&amp;amp; \hat{\xi} - \frac{c^T \hat{\beta}}{\|b\|\subscript{2}^2} b, \nonumber 
+\hat{\hat{\xi}} &amp;amp;=&amp;amp; \hat{\xi} - \frac{b^T y}{\|b\|\subscript{2}^2} b = \hat{\xi} - \frac{c^T \hat{\beta}}{\|b\|\subscript{2}^2} b, \nonumber 
 \end{eqnarray}
 $$&lt;/p&gt;
 
