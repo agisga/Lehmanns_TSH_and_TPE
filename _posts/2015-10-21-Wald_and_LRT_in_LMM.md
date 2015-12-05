@@ -107,7 +107,7 @@ Thus, we obtain a level $\alpha$ test (in an asymptotic sense) for the testing p
 * ... a one-sided test if and only if $g\left(\hat{\beta}^{(n)}\right) > \hat{\delta}^{(n)} z\subscript{1-\alpha}$, 
 * ... a two-sided test if and only if $\left| g\left(\hat{\beta}^{(n)}\right) \right| > \hat{\delta}^{(n)} z\subscript{1-\alpha / 2}$, 
 
-where $\left(\hat{\delta}^{(n)}\right)^2 = \frac{\partial g}{\partial \beta} \left(\hat{\beta}^{(n)}\right) \left(\hat{\mathcal{I}}^{(n)}\right)^{-1} \left( \frac{\partial g}{\partial \beta}\left(\hat{\beta}^{(n)}\right) \right)^T$ with the superscript $n$ denoting the sample size underlying the computations, and where $\hat{\mathcal{I}}^{(n)} = \left(X^{(n)}\right)^T \left(\hat{V}^{(n)}\right)^{-1} X^{(n)}$ is an estimate of $\mathcal{I}$, and $z\subscript{1-\alpha}$ denotes the $(1-\alpha)$ percentile of the standard normal distribution.
+where $\left(\hat{\delta}^{(n)}\right)^2 = \frac{\partial g}{\partial \beta} \left(\hat{\beta}^{(n)}\right) \left(\hat{\mathcal{I}}^{(n)}\right)^{-1} \left( \frac{\partial g}{\partial \beta}\left(\hat{\beta}^{(n)}\right) \right)^T$ with the superscript $n$ denoting the sample size underlying the computations, and where $\hat{\mathcal{I}}^{(n)} = \left(X^{(n)}\right)^T \left(\hat{V}^{(n)}\right)^{-1} X^{(n)}$ is an estimate of $\mathcal{I}$, and $z\subscript{1-\alpha}$ denotes the $(1-\alpha)$ quantile of the standard normal distribution.
 
 By the equivalence of confidence regions and hypotheses tests (see [another of my writeups about TSH](http://0.0.0.0:4000/Lehmanns_TSH_and_TPE/unbiasedness/)), it follows that $g(\beta)$ is contained in the $(1-\alpha)$ confidence region if and only if $g(\beta) \geq g\left( \hat{\beta}^{(n)} \right) - z\subscript{1-\alpha/2}\delta$ and $g(\beta) \leq g\left( \hat{\beta}^{(n)} \right) + z\subscript{1-\alpha/2}\delta$, which yields a Wald confidence interval.
 
@@ -133,10 +133,10 @@ However, this Theorem cannot be applied to the linear mixed model ($\ref{LMM}$) 
 
 $$2 \log R\subscript{n} = 2 \log \frac{L}{L\subscript{0}} \overset{\mathcal{L}}{\longrightarrow} \chi\subscript{q}^2,$$
 
-where $L$ denotes the likelihood of the full model ($\ref{LMM}$) and $L\subscript{0}$ the likelihood of the model restricted subject to $K^T \beta = 0$ (it looks like this can be proven by following the approach taking in the proof of Theorem 12.4.2; alternatively it should be possible to derive this result directly from the asymptotic distribution of $\hat{\beta}$ given above; though I haven't carried out either approach completely; however, I have seen this result stated without proof in multiple linear mixed models books, so I trust it (for now) :smile:).
+where $L$ denotes the likelihood of the full model ($\ref{LMM}$) and $L\subscript{0}$ the likelihood of the model restricted subject to $K^T \beta = 0$ (it looks like this can be proven by following the approach taken in the proof of Theorem 12.4.2; alternatively it should be possible to derive this result directly from the asymptotic distribution of $\hat{\beta}$ given above; though I haven't carried out either approach completely; however, I have seen this result stated without proof in multiple linear mixed models books, so I trust it (for now) :smile:).
 
 This leads to a simple level $\alpha$ test that rejects $\mathrm{H}$ if and only if
 
 $$2 \log R\subscript{n} > \chi\subscript{q, 1-\alpha}^2,$$
 
-where $\chi\subscript{q, 1-\alpha}^2$ is the $(1-\alpha)$ percentile of $\chi\subscript{q}^2$.
+where $\chi\subscript{q, 1-\alpha}^2$ is the $(1-\alpha)$ quantile of $\chi\subscript{q}^2$.
