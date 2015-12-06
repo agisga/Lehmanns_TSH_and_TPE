@@ -19,7 +19,7 @@ $$\\{\theta\in\Theta : R\subscript{n}(X^n, \theta(P)) \leq J\subscript{n}^{-1}(1
 
 and a two-sided interval is obtained analogously.
 
-The bootstrap method replaces the unknown distribution $P$ by the empirical distribution $\hat{P}\subscript{n}$. In nonparametric problems the empirical distribution can be defined as $\hat{P}\subscript{n}(E) = \frac{1}{n} \sum\subscript{i=1}^n I\\{x\subscript{i} \in E\\}$. In parameteric problems where $\mathcal{P} = \\{P\subscript{\psi} : \psi\in\Psi\\}$ we can use $\hat{P}\subscript{n} = P\subscript{\hat{\psi}\subscript{n}}$. The sample, which is used to compute the empirical distribution, is usually obtained by either resampling observations from $X^n$ with replacement, or in parametric settings with help of random number generators.
+The bootstrap method replaces the unknown distribution $P$ by the empirical distribution $\hat{P}\subscript{n}$. In nonparametric problems the empirical distribution can be defined as $\hat{P}\subscript{n}(E) = \frac{1}{n} \sum\subscript{i=1}^n I\\{x\subscript{i} \in E\\}$. In parametric problems where $\mathcal{P} = \\{P\subscript{\psi} : \psi\in\Psi\\}$ we can use $\hat{P}\subscript{n} = P\subscript{\hat{\psi}\subscript{n}}$. The sample, which is used to compute the empirical distribution, is usually obtained by either resampling observations from $X^n$ with replacement, or in parametric settings with help of random number generators.
 
 In the case that $J\subscript{n}(x, \hat{P})$ is not continuous and strictly increasing, we define
 
@@ -46,7 +46,7 @@ Under the assumption that a continuous limiting distribution exists (i.e. $J\sub
 
 When 1-2 hold, the bootstrap is said to be *strongly consistent*. When 1-2 only hold in probability, then the bootstrap is said to be *weakly consistent*. Property 3 holds for a weakly consistent estimator as well.
 
-Now, consider the root $R\subscript{n}(X^n, \theta(P)) = \sqrt{n}\left(g(\hat{\theta}\subscript{n}) - g(\theta(P)) \right)$, where $\hat{\theta}\subscript{n}$ is an efficient likelihood estimator, and $P$ is a distribution from a quadratic mean differentiable family. In particular, it follows that $R\subscript{n}(X^n, \theta(P))$ is asymptoticaly normal with mean zero and asymptotic variance $\frac{\partial g}{\partial \theta} \mathcal{I}^{-1}(\theta) \left(\frac{\partial g}{\partial \theta}\right)^T$. Theorem 15.4.2 in TSH proves that bootstrap confidence intervals based on this root are weakly consistent.
+Now, consider the root $R\subscript{n}(X^n, \theta(P)) = \sqrt{n}\left(g(\hat{\theta}\subscript{n}) - g(\theta(P)) \right)$, where $\hat{\theta}\subscript{n}$ is an efficient likelihood estimator, and $P$ is a distribution from a quadratic mean differentiable family. In particular, it follows that $R\subscript{n}(X^n, \theta(P))$ is asymptotically normal with mean zero and asymptotic variance $\frac{\partial g}{\partial \theta} \mathcal{I}^{-1}(\theta) \left(\frac{\partial g}{\partial \theta}\right)^T$. Theorem 15.4.2 in TSH proves that bootstrap confidence intervals based on this root are weakly consistent.
 
 ## Application to a linear mixed model
 
@@ -70,7 +70,7 @@ Parametric bootstrap samples of the parameter estimates in the linear mixed mode
 
 1. Fit a linear mixed model to obtain the estimated fixed effects $\hat{\beta}$, the estimated random effects covariance matrix $\hat{\Sigma} = \Sigma\subscript{\hat{\theta}}$, and the estimated scaling factor (or residual variance) $\hat{\sigma}^2$. 
 
-2. Generate a bootstrap sample as $Y^{\ast} = X\hat{\beta} + Zb^{\ast} + o + \varepsilon^{\ast}$, where we randomly sample $b^{\ast} \sim N(0, \hat{\Sigma})$ and $\varepsilon^{\ast} \sim N(0, \hat{\sigma}^2 W^{-1})$.
+2. Generate a bootstrap sample as $Y^{\ast} = X\hat{\beta} + Zb^{\ast} + \varepsilon^{\ast}$, where we randomly sample $b^{\ast} \sim N(0, \hat{\Sigma})$ and $\varepsilon^{\ast} \sim N(0, \hat{\sigma}^2 W^{-1})$.
 
 3. Re-fit the linear mixed model to the bootstrap data to obtain bootstrap parameter estimates.
 
