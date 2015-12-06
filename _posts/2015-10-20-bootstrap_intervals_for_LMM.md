@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Bootstrap confidence intervals for linear mixed models
+title: Bootstrap confidence intervals and hypotheses tests for linear mixed models
 ---
 
 Bootstrap confidence intervals and hypotheses tests are introduced in Chapter 15 of TSH. Bootstrap methods are typically used when the small sample distribution as well as the asymptotic sampling distribution of an estimator is not tractable. Also, even when asymptotic tests or confidence regions (such as Wald's) can be obtained, their performance is often provably inferior to the bootstrap methods.
 
-In the following we will consider parametric bootstrap confidence intervals for the fixed effects coefficients in linear mixed models. But first I would like to review the general concept of bootstrap intervals.
+In the following we will consider parametric bootstrap confidence intervals for the fixed effects coefficients in linear mixed models. But first I would like to review the general concept of bootstrap intervals. Later, bootstrap hypotheses tests (likelihood ratio test and goodness of fit) for linear mixed models are introduced as well.
 
 ## Bootstrap confidence intervals
 
@@ -121,3 +121,54 @@ In general, it appears that basic and studentized bootstrap intervals are superi
 Of course, the Wald Z method has the advantage of being computationally efficient and convenient. All bootstrap intervals are computationally very heavy, especially for big data sets. Thus, it is probably best to use the Wald Z intervals in the data exploration phase, and compare different kinds of bootstrap intervals once it is more clear what to look for.
 
 Also, see my [blog post](/bootstap_confidence_intervals/) on the implementation of bootstrap confidence intervals in Ruby for the [`mixed_models`](https://github.com/agisga/mixed_models) software package.
+
+## Bootstrap hypotheses tests
+
+Again, denote by $P\in\mathcal{P}$ the unknown distribution of the data. Using the duality of tests and confidence regions, the confidence intervals introduced above can be used to test hypotheses about a parameter $\theta(P)$. That is, given a consistent in level bootstrap interval, a bootstrap hypothesis test of $\mathrm{H} : \theta(P) = \theta\subscript{0}$, which rejects $\mathrm{H}$ if and only if $\theta\subscript{0}$ is outside the confidence interval, is consistent in level. However, not all testing problems can be reduced to testing parameters. For example, consider the goodness of fit problem, where the objective is to test whether the data come from a parametric subfamily of a non-parametric family of distribution.
+
+In general, if we divide $\mathcal{P}$ into two disjoint subsets $\mathcal{P} = \mathcal{P}\subscript{0} \cup \mathcal{P}\subscript{1}$, then we can test
+
+$$\mathrm{H} : P\in\mathcal{P}\subscript{0} \quad\mathrm{vs.}\quad P\in\mathcal{P}\subscript{1}.$$
+
+Given a test statistic $T\subscript{n}$, we want to find a critical value $c\subscript{n, 1-\alpha}$ such that
+
+$$
+\begin{eqnarray}
+P(T\subscript{n} > c\subscript{n, 1-\alpha}) &\rightarrow& \alpha, \,\mathrm{if}\, P\in\mathcal{P}\subscript{0}, \nonumber \\\\\\
+P(T\subscript{n} > c\subscript{n, 1-\alpha}) &\rightarrow& 1, \,\mathrm{if}\, P\in\mathcal{P}\subscript{1}, \nonumber 
+\end{eqnarray}
+$$
+
+as $n\rightarrow \infty$.
+
+Denote the distribution of $T\subscript{n}$ under $P$ by $G\subscript{n}(P)$ and its quantiles by $g\subscript{n}(1-\alpha, P)$, that is,
+
+$$
+\begin{eqnarray}
+G\subscript{n}(t, P) &=& P(T\subscript{n} \leq t), \nonumber \\\\\\
+g\subscript{n}(1-\alpha, P) &=& \inf\\{t : G\subscript{n}(t, P) \geq 1-\alpha \\}. \nonumber
+\end{eqnarray}
+$$
+
+Denote by $\hat{Q}\subscript{n}$ the empirical estimate of $P$ under constraint that $P\in\mathcal{P}\subscript{0}$. The bootstrap approach is to estimate the null sampling distribution of $T\subscript{n}$ by $G\subscript{n}(\hat{Q}\subscript{n})$. Then the critical value of the bootstrap test is $g\subscript{n}(1-\alpha, \hat{Q}\subscript{n})$. Theorem 15.6.1 in TSH establishes that this bootstrap test is asymptotically level $\alpha$.
+
+### Bootstrap likelihood ration test
+
+Rather than using the fact that the twice the logarithm of the likelihood ratio has a chi squared distribution under the null (see [my previous writeup on asymptotic tests for LMM](/Lehmanns_TSH_and_TPE/Wald_and_LRT_in_LMM/)), one can bootstrap $T\subscript{n}$ using the parametric resampling strategy introduced before. Thus, if $\left(\hat{\hat{\beta}}, \hat{\hat{\theta}}, \hat{\hat{\sigma}}^2\right)$ are the parameter estimates of model ($\ref{LMM}$) under the null hypothesis, then the critical value of the test is given by $g\subscript{n}\left(1-\alpha, \left(\hat{\hat{\beta}}, \hat{\hat{\theta}}, \hat{\hat{\sigma}}^2\right)\right)$.
+
+Example 15.6.2 in TSH cites a result that the bootstrap LRT has error $\mathcal{O}(n^{-2})$ in rejection probability, while the usual LRT based on the chi squared distribution has an error of $\mathcal{O}(n^{-1})$.
+
+See Section 4.2.3 in Davison and Hinkley (1997) "Bootstrap Methods and their Application" for more detail on the construction and properties of the test.
+
+### Goodness of fit
+
+One might want to test whether the data really comes from a distribution such as assumed in ($\ref{LMM}$).
+To this end, let $\hat{P}\subscript{n}$ denote the empirical distribution of $Y^n$ from ($\ref{LMM}$), let $(\hat{\beta}, \hat{\theta}, \hat{\sigma}^2)\subscript{n}$ be the usual maximum likelihood estimators of the parameters in ($\ref{LMM}$), and define the test statistic to be
+
+$$T\subscript{n} = \sqrt{n} \delta\left(\hat{P}\subscript{n}, P\subscript{(\hat{\beta}, \hat{\theta}, \hat{\sigma}^2)\subscript{n}} \right),$$
+
+where $\delta$ is some metric.
+
+We can bootstrap $T\subscript{n}$ based on $P\subscript{(\hat{\beta}, \hat{\theta}, \hat{\sigma}^2)\subscript{n}}$ (same resampling approach as introduced previously), in order to find its sampling distribution under the hypothesis that model ($\ref{LMM}$) is valid. Then a critical value for the test can be readily obtained.
+ 
+See Example 15.6.5 in TSH for references to papers on this method.
